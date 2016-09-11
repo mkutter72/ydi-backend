@@ -7,12 +7,18 @@ var bodyParser = require('body-parser');
 var session = require('express-session');
 var MongoStore = require('connect-mongo')(session);
 var mongoose = require('./models/index');
+var cors = require('cors');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var donor = require('./routes/donor');
 
 var app = express();
+
+app.use(cors({
+ origin: ['http://localhost:5000', 'http://mkutter72.github.io'],
+ credentials: false
+}));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
