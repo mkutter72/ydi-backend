@@ -9,7 +9,7 @@ module.exports = {
     },
     makenew : {
         post : function(req, res, next) {
-            if(!req.body.name || !req.body.email || !req.body.amount) {
+            if(!req.body.name || !req.body.email || !req.body.amount || !req.body.mode) {
                 var err = new Error("Empty fields.");
                 return next(err);
             }
@@ -18,7 +18,8 @@ module.exports = {
                 Donor.create({
                     name : req.body.name,
                     email : req.body.email,
-                    amount : req.body.amount
+                    amount : req.body.amount,
+                    mode: req.body.mode
 
                 }, function(err, user) {
                     if(err) {
@@ -49,15 +50,21 @@ module.exports = {
 
     donor : {
         get : function(req, res, next){
-         Donor.find().exec().then(
-               function(result) {
-                res.json(result);
+            Donor.find().exec().then(
+                 function(result) {
+                  console.log(req.query);
+
+            var total = result.reduce(function(previousValue, currentValue, currentIndex, array) {
+                return previousValue + parseInt(currentValue.amount);},0);
+
+            if (req.query && req.query.q == "list")
+              res.json(result);
+            else
+              res.json(total);
+
             }).catch(function(error) {
                 next(error);
             });
-
          }
     }
-
-
 };

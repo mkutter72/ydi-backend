@@ -18,6 +18,10 @@ var donorSchema = new Schema({
     type : String,
     required : true
   },
+  mode : {
+    type : String,
+    required : true
+  },
 });
 
 module.exports = donorSchema;
