@@ -5,6 +5,6 @@ mongoose.Promise = Promise;
 
 mongoose.model('Donor', require('./Donor'));
 
-mongoose.connect("mongodb://localhost/ydi-ride");
+mongoose.connect(process.env.MONGOLAB_URI);
 
 module.exports = mongoose;
