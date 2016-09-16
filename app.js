@@ -16,7 +16,7 @@ var donor = require('./routes/donor');
 var app = express();
 
 app.use(cors({
- origin: ['http://localhost:5000', 'http://mkutter72.github.io'],
+ origin: ['http://localhost:5000', 'https://mkutter72.github.io'],
  credentials: false
 }));
 
