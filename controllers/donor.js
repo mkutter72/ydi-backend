@@ -14,6 +14,7 @@ module.exports = {
                 return next(err);
             }
 
+            var d = new Date();
             var pDonor = new Promise(function(resolve, reject) {
                 Donor.create({
                     name : req.body.name,
