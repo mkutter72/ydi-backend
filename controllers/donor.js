@@ -19,7 +19,8 @@ module.exports = {
                     name : req.body.name,
                     email : req.body.email,
                     amount : req.body.amount,
-                    mode: req.body.mode
+                    mode: req.body.mode,
+                    date : d.toLocaleString()
 
                 }, function(err, user) {
                     if(err) {
